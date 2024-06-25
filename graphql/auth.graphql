@@ -1,0 +1,37 @@
+input LoginPayload {
+    email: String!
+    password: String!
+}
+
+input RegisterPayload {
+    email: String!
+    password: String!
+    country: String!
+    phone: String!
+    currency: String!
+}
+
+input ForgotPasswordPayload {
+    email: String!
+}
+
+input ResetPasswordPayload {
+    email: String!
+    token: String!
+    password: String!
+}
+
+
+type Query {
+    me: User @auth
+}
+
+type Mutation {
+    login(input: LoginPayload!): String! @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@login")
+    register(input: RegisterPayload!): Boolean! @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@register")
+    forgotPassword(input: ForgotPasswordPayload!): Boolean! @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@forgotPassword")
+    resetPassword(input: ResetPasswordPayload!): Boolean! @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@resetPassword")
+    logout: Boolean @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@logout")
+}
+
+

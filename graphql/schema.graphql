@@ -1,0 +1,3 @@
+#import scalar.graphql
+#import auth.graphql
+#import user.graphql
